@@ -35,18 +35,19 @@ export default function Navbar() {
             <img src="/IMG_0384.jpeg" alt="Talktoshop" className="h-10" />
           </Link>
 
-          <form onSubmit={handleSearch} className="flex-1 max-w-md mx-8">
-            <div className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search products, vendors, categories..."
-                className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-            </div>
-          </form>
+          <form onSubmit={handleSearch} className="flex-1 w-full max-w-md mx-2 sm:mx-8">
+  <div className="relative w-full">
+    <input
+      type="text"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      placeholder="Search products, vendors, categories..."
+      className="w-full px-10 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+    />
+    <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+  </div>
+</form>
+
 
           <div className="flex items-center space-x-6">
             <Link to="/shop" className="text-gray-700 hover:text-primary-500 font-medium">
