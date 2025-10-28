@@ -54,7 +54,10 @@ export default function Home() {
       className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
         index === currentImage ? "opacity-100" : "opacity-0"
       }`}
-      style={{ backgroundImage: `url(${image})` }}
+      style={{ backgroundImage: `url(${image})`,
+        backgroundColor: '#111', // fallback color while loading
+    filter: 'brightness(0.95)',
+    }}
     ></div>
   ))}
 
@@ -70,9 +73,13 @@ export default function Home() {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="text-5xl font-bold mb-6"
     >
-      Welcome to{" "}
-      <span className="text-white">TalkTo</span>
-      <span className="text-white">Shop</span>
+      <h1
+  className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 tracking-wide leading-tight text-center"
+>
+  Welcome to <span className="text-white">TalkTo</span>
+  <span className="text-white">Shop</span>
+</h1>
+
     </motion.h1>
 
     {/* Hero Subtitle */}
