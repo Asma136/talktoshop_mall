@@ -9,7 +9,7 @@ export default function AddProduct() {
   const [uploading, setUploading] = useState(false);
 
   // image file selected by admin
-  const [imageFile, setImageFile] = useState<File | null>(null); // 👈 used
+  const [imageFile, setImageFile] = useState<File | null>(null); 
 
   const [formData, setFormData] = useState({
     name: '',

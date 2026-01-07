@@ -11,7 +11,7 @@ export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // 👇 Add these two lines HERE (inside Home, above the return)
+   
   const heroImages = ['/hero-bg21.jpg', '/hero-bg27.jpg', '/hero-bg25.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -97,12 +97,22 @@ export default function Home() {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.6 }}
+        className="flex flex-col sm:flex-row gap-4"
+
     >
       <Link
         to="/shop"
         className="inline-flex items-center bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
       >
         Start Shopping <ArrowRight className="ml-2 h-5 w-5" />
+      </Link>
+      
+      <Link
+        to="/vendor/onboarding"
+        className="inline-flex items-center justify-center bg-pink-600 text-white px-8 py-3 rounded-lg font-semibold
+               hover:bg-pink-700 hover:shadow-lg hover:scale-105 transition-all duration-300"
+  >
+        Become A Vendor
       </Link>
     </motion.div>
   </div>

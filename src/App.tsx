@@ -24,6 +24,7 @@ import OrdersList from './pages/admin/OrdersList';
 import MessagesList from './pages/admin/MessagesList';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import VendorOnboarding from './pages/vendor/VendorOnboarding';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Layout>
             <Routes>
               {/* Public Routes */}
+              <Route path="/vendor/onboarding" element={<VendorOnboarding />} />
               <Route path="/" element={<Home />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/category/:categoryName" element={<Category />} />
