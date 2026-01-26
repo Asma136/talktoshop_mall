@@ -27,7 +27,20 @@ export default function Checkout() {
     alert(' Account number copied!');
   };
 
-  // 🟩 UPDATED FUNCTION BELOW
+
+const itemsWithVendor = cart.map(item => ({
+  product_id: item.id,
+  name: item.name,
+  price: item.price,
+  quantity: item.quantity,
+  image_url: item.image_url,
+  colors: item.colors,
+  vendor_id: item.vendor, 
+}));
+
+
+
+
   const handlePaymentConfirmed = async () => {
     setIsSubmitting(true);
     try {
@@ -36,7 +49,9 @@ export default function Checkout() {
         user_name: formData.name,
         user_phone: formData.phone,
         user_address: formData.address,
-        items: cart,
+      
+          items: itemsWithVendor,
+
         total_amount: cartTotal,
         payment_reference: 'BANK_TRANSFER',
         status: 'pending', 
@@ -47,7 +62,7 @@ export default function Checkout() {
       alert('Order placed successfully! Please complete payment via bank transfer.');
       navigate('/thank-you');
 
-      // 🟩 FIX: Move clearCart AFTER navigate so Thank You page loads correctly
+      
       setTimeout(() => {
         clearCart();
       }, 500);
@@ -58,7 +73,6 @@ export default function Checkout() {
       setIsSubmitting(false);
     }
   };
-  // 🟩 END OF UPDATED FUNCTION
 
   if (cart.length === 0) {
     navigate('/cart');
@@ -132,11 +146,27 @@ export default function Checkout() {
 
             <div className="space-y-2 mb-4">
               {cart.map((item) => (
-                <div key={item.id} className="flex justify-between text-sm text-gray-600">
-                  <span>{item.name} x {item.quantity}</span>
-                  <span>₦{(item.price * item.quantity).toLocaleString()}</span>
-                </div>
-              ))}
+  <div key={item.id} className="flex justify-between text-sm text-gray-600 flex-col">
+    <div>
+      <span>{item.name} × {item.quantity}</span>
+      {Array.isArray(item.colors) && item.colors.length > 0 && (
+        <div className="flex items-center gap-1 mt-1">
+          <span className="text-gray-600 text-xs">Color:</span>
+          {item.colors.map((color, idx) => (
+            <span
+              key={idx}
+              className="w-4 h-4 rounded-full border border-gray-300 inline-block"
+              style={{ backgroundColor: color }}
+              title={color}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+    <span>₦{(item.price * item.quantity).toLocaleString()}</span>
+  </div>
+))}
+
             </div>
 
             <div className="border-t pt-4 mb-6">

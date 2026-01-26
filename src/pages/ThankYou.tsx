@@ -7,14 +7,14 @@ export default function ThankYou() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 🎉 Trigger confetti when the page loads
+    //  Trigger confetti when the page loads
     confetti({
       particleCount: 120,
       spread: 80,
       origin: { y: 0.6 }
     });
 
-    // ⏳ Auto redirect after 10 seconds
+    //  Auto redirect after 10 seconds
     const timer = setTimeout(() => {
       navigate('/');
     }, 10000);

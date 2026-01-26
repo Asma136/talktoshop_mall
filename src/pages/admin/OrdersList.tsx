@@ -28,25 +28,7 @@ export default function OrdersList() {
     }
   }
 
-  async function handleStatusChange(id: string, newStatus: string) {
-    try {
-      const { error } = await supabase
-        .from("orders")
-        .update({ status: newStatus })
-        .eq("id", id);
-
-      if (error) throw error;
-
-      setOrders((prev) =>
-        prev.map((order) =>
-          order.id === id ? { ...order, status: newStatus } : order
-        )
-      );
-    } catch (error) {
-      console.error("Error updating status:", error);
-      alert("Failed to update order status");
-    }
-  }
+  
 
   async function handleDelete(id: string) {
     const confirmDelete = window.confirm(
@@ -91,7 +73,7 @@ export default function OrdersList() {
         <p className="text-gray-600 text-center">No orders yet.</p>
       ) : (
         <>
-          {/* 🖥 Desktop Table */}
+          {/*  Desktop Table */}
           <div className="hidden md:block bg-white rounded-lg shadow-md overflow-hidden">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
@@ -105,9 +87,7 @@ export default function OrdersList() {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                     Total (₦)
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Status
-                  </th>
+                  
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                     Date
                   </th>
@@ -128,23 +108,7 @@ export default function OrdersList() {
                           ₦{Number(order.total_amount).toLocaleString()}
                         </td>
                         <td className="px-6 py-4">
-                          <select
-                            value={order.status}
-                            onChange={(e) =>
-                              handleStatusChange(order.id, e.target.value)
-                            }
-                            className={`px-3 py-1 rounded-full text-sm font-semibold cursor-pointer ${
-                              order.status === "completed"
-                                ? "bg-green-100 text-green-800"
-                                : order.status === "cancelled"
-                                ? "bg-red-100 text-red-800"
-                                : "bg-yellow-100 text-yellow-800"
-                            }`}
-                          >
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                          </select>
+                          
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-500">
                           {new Date(order.created_at).toLocaleString()}
@@ -179,14 +143,30 @@ export default function OrdersList() {
 
                               <div className="mt-2">
                                 <p className="font-semibold mb-1">Items:</p>
+
                                 <ul className="list-disc pl-6">
-                                  {items.map((item: any) => (
-                                    <li key={item.id}>
-                                      {item.name} × {item.quantity} — ₦
-                                      {(item.price * item.quantity).toLocaleString()}
-                                    </li>
-                                  ))}
-                                </ul>
+  {items.map((item: any) => (
+    <li key={item.id} className="mb-1">
+      <div>
+        {item.name} × {item.quantity} — ₦{(item.price * item.quantity).toLocaleString()}
+      </div>
+      {Array.isArray(item.colors) && item.colors.length > 0 && (
+        <div className="flex items-center gap-1 mt-1">
+          <span className="text-gray-600 text-xs">Color:</span>
+          {item.colors.map((color: string, idx: number) => (
+            <span
+              key={idx}
+              className="w-4 h-4 rounded-full border border-gray-300 inline-block"
+              style={{ backgroundColor: color }}
+              title={color}
+            />
+          ))}
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
+                                
                               </div>
                             </div>
                           </td>
@@ -199,7 +179,7 @@ export default function OrdersList() {
             </table>
           </div>
 
-          {/* 📱 Mobile Cards */}
+          {/*  Mobile Cards */}
           <div className="space-y-4 md:hidden">
             {orders.map((order) => {
               const items = getItemsArray(order.items);
@@ -223,24 +203,7 @@ export default function OrdersList() {
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <select
-                      value={order.status}
-                      onChange={(e) =>
-                        handleStatusChange(order.id, e.target.value)
-                      }
-                      className={`px-3 py-1 rounded-full text-sm font-semibold cursor-pointer ${
-                        order.status === "completed"
-                          ? "bg-green-100 text-green-800"
-                          : order.status === "cancelled"
-                          ? "bg-red-100 text-red-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="completed">Completed</option>
-                      <option value="cancelled">Cancelled</option>
-                    </select>
-
+                    
                     <div className="text-xs text-gray-500">
                       {new Date(order.created_at).toLocaleString()}
                     </div>
@@ -271,14 +234,29 @@ export default function OrdersList() {
                       </p>
                       <div className="mt-2">
                         <p className="font-semibold mb-1">Items:</p>
-                        <ul className="list-disc pl-5">
-                          {items.map((item: any) => (
-                            <li key={item.id}>
-                              {item.name} × {item.quantity} — ₦
-                              {(item.price * item.quantity).toLocaleString()}
-                            </li>
-                          ))}
-                        </ul>
+
+<ul className="list-disc pl-5">
+  {items.map((item: any) => (
+    <li key={item.id} className="mb-1">
+      <div>
+        {item.name} × {item.quantity} — ₦{(item.price * item.quantity).toLocaleString()}
+      </div>
+      {Array.isArray(item.colors) && item.colors.length > 0 && (
+        <div className="flex items-center gap-1 mt-1">
+          <span className="text-gray-600 text-xs">Color:</span>
+          {item.colors.map((color: string, idx: number) => (
+            <span
+              key={idx}
+              className="w-4 h-4 rounded-full border border-gray-300 inline-block"
+              style={{ backgroundColor: color }}
+              title={color}
+            />
+          ))}
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
                       </div>
                     </div>
                   )}

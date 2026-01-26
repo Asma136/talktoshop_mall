@@ -55,7 +55,7 @@ export default function MessagesList() {
         <p className="text-gray-600 text-center">No messages found.</p>
       ) : (
         <>
-          {/* 🖥 Desktop Table View */}
+          {/*  Desktop Table View */}
           <div className="hidden md:block bg-white rounded-lg shadow-md overflow-hidden">
             <table className="min-w-full border border-gray-200 text-sm">
               <thead className="bg-gray-100 text-gray-700">
@@ -97,7 +97,7 @@ export default function MessagesList() {
             </table>
           </div>
 
-          {/* 📱 Mobile Card View */}
+          {/*  Mobile Card View */}
           <div className="space-y-4 md:hidden">
             {messages.map((m) => (
               <div

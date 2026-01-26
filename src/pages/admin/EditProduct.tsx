@@ -239,7 +239,7 @@ export default function EditProduct() {
           />
         </div>
 
-        {/* ✅ UPDATED IMAGE UPLOAD SECTION STARTS HERE */}
+        {/* UPDATED IMAGE UPLOAD SECTION STARTS HERE */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Product Image
@@ -284,7 +284,7 @@ export default function EditProduct() {
             className="block w-full text-sm text-gray-700"
           />
         </div>
-        {/* ✅ UPDATED IMAGE UPLOAD SECTION ENDS HERE */}
+        {/*  UPDATED IMAGE UPLOAD SECTION ENDS HERE */}
 
         <div className="flex space-x-4">
           <button

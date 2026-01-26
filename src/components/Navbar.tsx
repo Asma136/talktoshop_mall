@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, User, LogOut } from 'lucide-react';
+import { ShoppingCart, Search, User, LogOut,ChevronDown } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import { useState } from 'react';
@@ -9,6 +9,7 @@ export default function Navbar() {
   const { cartCount } = useCart();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -81,12 +82,40 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="flex items-center text-gray-700 hover:text-primary-500"
-              >
-                <User className="h-6 w-6" />
-              </Link>
+              <div className="relative flex items-center space-x-1">
+  {/* User icon (no click) */}
+  <User className="h-6 w-6 text-gray-700" />
+
+  {/* Dropdown arrow */}
+  <button
+    onClick={() => setShowUserMenu((prev) => !prev)}
+    className="text-gray-700 hover:text-primary-500 focus:outline-none"
+  >
+    <ChevronDown className="h-4 w-4" />
+  </button>
+
+  {/* Dropdown menu */}
+  {showUserMenu && (
+    <div className="absolute right-0 top-8 w-44 bg-white border rounded-lg shadow-lg z-50">
+      <Link
+        to="/login"
+        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+        onClick={() => setShowUserMenu(false)}
+      >
+        User Login
+      </Link>
+
+      <Link
+        to="/vendor/login"
+        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+        onClick={() => setShowUserMenu(false)}
+      >
+        Vendor Login
+      </Link>
+    </div>
+  )}
+</div>
+
             )}
           </div>
         </div>

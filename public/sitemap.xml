@@ -19,7 +19,23 @@
   </url>
 
   <url>
+    <loc>https://talktoshop.com.ng/blog</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://talktoshop.com.ng/vendor/onboarding</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://talktoshop.com.ng/vendor/register</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://talktoshop.com.ng/contact</loc>
     <priority>0.6</priority>
   </url>
+
+
 </urlset>

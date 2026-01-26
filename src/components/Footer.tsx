@@ -16,6 +16,11 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link to="/blog" className="text-gray-400 hover:text-white">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link to="/shop" className="text-gray-400 hover:text-white">
                   Shop
                 </Link>
@@ -28,6 +33,12 @@ export default function Footer() {
               <li>
                 <Link to="/contact" className="text-gray-400 hover:text-white">
                   Contact
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/return-policy" className="text-gray-400 hover:text-white">
+                  Return Policy
                 </Link>
               </li>
             </ul>

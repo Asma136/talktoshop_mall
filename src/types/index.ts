@@ -1,15 +1,24 @@
 export interface Product {
+  vendors: any;
+  colors: boolean;
+  location: any;
   id: string;
   name: string;
   description: string;
   price: number;
   category: string;
   subcategory: string;
-  vendor: string;
   image_url: string;
   stock: number;
   created_at: string;
   updated_at: string;
+    vendor_id: string;
+
+  vendor?: {
+    id: string;
+    name: string;
+  };
+
 }
 
 export interface Order {

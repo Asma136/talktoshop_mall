@@ -20,6 +20,9 @@ export default function Cart() {
     );
   }
 
+
+  console.log('CART CONTENT:', cart);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
@@ -52,6 +55,22 @@ export default function Cart() {
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900">{item.name}</h3>
                   <p className="text-sm text-gray-600">{item.vendor}</p>
+                  {Array.isArray(item.colors) && item.colors.length > 0 && (
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-gray-600 text-sm">Color:</span>
+                      {item.colors.map((color, idx) => (
+                        <span
+                          key={idx}
+                          className="w-5 h-5 rounded-full border border-gray-300"
+                          style={{ backgroundColor: color }}
+                          title={color}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+
+
                   <p className="text-primary-600 font-bold mt-1">₦{item.price.toLocaleString()}</p>
                 </div>
 
@@ -86,16 +105,46 @@ export default function Cart() {
           <div className="bg-white rounded-lg shadow-md p-6 sticky top-20">
             <h2 className="text-xl font-bold text-gray-900 mb-4">Order Summary</h2>
 
-            <div className="space-y-2 mb-4">
-              <div className="flex justify-between text-gray-600">
-                <span>Subtotal</span>
-                <span>₦{cartTotal.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between text-gray-600">
-                <span>Delivery</span>
-                <span>Calculated at checkout</span>
-              </div>
-            </div>
+            <div className="space-y-3 mb-4">
+  {cart.map((item) => (
+    <div key={item.id} className="flex justify-between items-start">
+      <div>
+        <p className="text-gray-900 font-medium">
+          {item.name} × {item.quantity}
+        </p>
+
+        {Array.isArray(item.colors) && item.colors.length > 0 && (
+          <div className="flex items-center gap-1 mt-1">
+            <span className="text-gray-600 text-sm">Color:</span>
+            {item.colors.map((color, idx) => (
+              <span
+                key={idx}
+                className="w-4 h-4 rounded-full border border-gray-300"
+                style={{ backgroundColor: color }}
+                title={color}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      <p className="text-gray-900 font-medium">
+        ₦{(item.price * item.quantity).toLocaleString()}
+      </p>
+    </div>
+  ))}
+
+  <div className="flex justify-between text-gray-600 pt-2 border-t">
+    <span>Subtotal</span>
+    <span>₦{cartTotal.toLocaleString()}</span>
+  </div>
+
+  <div className="flex justify-between text-gray-600">
+    <span>Delivery</span>
+    <span>Calculated at checkout</span>
+  </div>
+</div>
+
 
             <div className="border-t pt-4 mb-6">
               <div className="flex justify-between text-xl font-bold text-gray-900">

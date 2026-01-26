@@ -23,7 +23,7 @@ export default function AddProduct() {
 
   // selectedCategory + subcategories are used in the UI below
   const selectedCategory = CATEGORIES.find((c) => c.name === formData.category);
-  const subcategories = selectedCategory?.subcategories || []; // 👈 used
+  const subcategories = selectedCategory?.subcategories || []; //  used
 
   // handleChange is used on all text/select/textarea inputs below
   const handleChange = (
@@ -122,9 +122,9 @@ export default function AddProduct() {
           </label>
           <textarea
             id="description"
-            name="description"               // 👈 name used by handleChange
+            name="description"               //  name used by handleChange
             value={formData.description}
-            onChange={handleChange}          // 👈 used
+            onChange={handleChange}          //  used
             rows={4}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
@@ -139,9 +139,9 @@ export default function AddProduct() {
             <input
               type="number"
               id="price"
-              name="price"                     // 👈 name used by handleChange
+              name="price"                     
               value={formData.price}
-              onChange={handleChange}          // 👈 used
+              onChange={handleChange}          
               required
               min="0"
               step="0.01"
@@ -156,9 +156,9 @@ export default function AddProduct() {
             <input
               type="number"
               id="stock"
-              name="stock"                     // 👈 name used by handleChange
+              name="stock"                     
               value={formData.stock}
-              onChange={handleChange}          // 👈 used
+              onChange={handleChange}          
               required
               min="0"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -173,9 +173,9 @@ export default function AddProduct() {
           </label>
           <select
             id="category"
-            name="category"                    // 👈 name used by handleChange
+            name="category"                    
             value={formData.category}
-            onChange={handleChange}            // 👈 used
+            onChange={handleChange}            
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
           >

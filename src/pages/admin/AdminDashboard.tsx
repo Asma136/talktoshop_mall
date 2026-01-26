@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 import { Product } from "../../types";
-import { Plus, Edit, Trash2, Menu, X } from "lucide-react";
+import {  Edit, Trash2, Menu, X } from "lucide-react";
 
 export default function AdminDashboard() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false); // ✅ NEW: controls mobile menu toggle
+  const [menuOpen, setMenuOpen] = useState(false); 
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -26,7 +26,8 @@ export default function AdminDashboard() {
     try {
       const { data, error } = await supabase
         .from("products")
-        .select("*")
+        .select(`*, vendors:vendor_id (id, business_name)`)
+
         .order("created_at", { ascending: false });
 
       if (error) throw error;
@@ -56,11 +57,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* ✅ TOP SECTION */}
+      {/*  TOP SECTION */}
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
 
-        {/* ✅ Hamburger Menu (Mobile) */}
+        {/*  Hamburger Menu (Mobile) */}
         <button
           className="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -69,19 +70,12 @@ export default function AdminDashboard() {
         </button>
       </div>
 
-      {/* ✅ Action Buttons — visible always on desktop, dropdown on mobile */}
+      {/*  Action Buttons — visible always on desktop, dropdown on mobile */}
       <div
         className={`flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 mb-8 ${
           menuOpen ? "block" : "hidden md:flex"
         }`}
       >
-        <Link
-          to="/admin/add-product"
-          className="bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center"
-        >
-          <Plus className="h-5 w-5 mr-2" />
-          Add Product
-        </Link>
 
         <Link
           to="/admin/orders"
@@ -96,9 +90,25 @@ export default function AdminDashboard() {
         >
           Customer Messages
         </Link>
+
+<Link
+          to="/admin/vendors"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
+        >
+          Vendor Management
+        </Link>
+
+<Link
+          to="/admin/blogs"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
+        >
+          Manage Blogs
+        </Link>
+
+
       </div>
 
-      {/* ✅ Product Table */}
+      {/*  Product Table */}
       {loading ? (
         <div className="bg-white rounded-lg shadow-md p-8 text-center">
           <p className="text-gray-600">Loading products...</p>
@@ -157,8 +167,11 @@ export default function AdminDashboard() {
                       {product.category}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {product.vendor}
-                    </td>
+  {product.vendors?.business_name ?? "—"}
+</td>
+
+
+
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       ₦{product.price.toLocaleString()}
                     </td>
