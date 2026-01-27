@@ -571,7 +571,7 @@ const onSubmit = async (data: VendorFormData) => {
   }}
 >
   <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#b91c1c', marginBottom: '12px' }}>
-    Kindly Pay Your Vendor Registration Fee
+    Kindly Pay Your Vendor Registration Fee: 5000 Naira
   </h2>
 
   {/* Account Number */}
