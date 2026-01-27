@@ -10,7 +10,7 @@ import { supabase } from "../../lib/supabase";
 const vendorSchema = z.object({
   businessName: z.string().min(2, 'Business name must be at least 2 characters'),
   ownerFullName: z.string().min(2, 'Owner name must be Full name'),
-  email: z.string().email('Please enter a valid email address'),
+  email: z.string().email('Please enter a valid  new email address you have never used before on this website'),
   phone: z.string().min(10, 'Please enter a valid phone number'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   agreeToTerms: z.boolean()
@@ -279,7 +279,7 @@ const onSubmit = async (data: VendorFormData) => {
               <input
                 type="email"
                 {...register('email')}
-                placeholder="Enter your email address"
+                placeholder="Enter a new email address "
                 style={{
                   width: '100%',
                   padding: '12px 16px',

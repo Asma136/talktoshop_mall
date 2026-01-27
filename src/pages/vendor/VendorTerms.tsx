@@ -15,7 +15,7 @@ export default function VendorTerms()  {
       {/* Terms Content */}
       <div className="max-w-4xl mx-auto px-4 py-8 md:py-12">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="h-auto max-h-[70vh] md:max-h-none">
+          <div >
             <div className="p-6 md:p-10 space-y-8 text-gray-700 leading-relaxed">
               
               {/* Section 1 */}
@@ -90,13 +90,11 @@ export default function VendorTerms()  {
                   TalkToShop charges a commission fee on each successful sale. The current commission structure is as follows:
                 </p>
                 <ul className="list-disc pl-6 space-y-2 mb-3">
-                  <li>Standard commission: 10% of the sale price</li>
-                  <li>Payment processing fees may apply</li>
+                  <li>Standard commission: 5% of the sale price</li>
+                  <li>Payment for registration as a vendor is 5000 Naira (One Time Payment)</li>
                   <li>Promotional listing fees (optional) vary by category</li>
                 </ul>
-                <p>
-                  Payments to vendors are processed weekly. Funds will be transferred to your registered bank account after deducting applicable fees and any pending refunds or disputes.
-                </p>
+                
               </section>
 
               {/* Section 6 */}
@@ -149,9 +147,7 @@ export default function VendorTerms()  {
                   <li>Listing prohibited products</li>
                   <li>Non-compliance with Nigerian laws and regulations</li>
                 </ul>
-                <p>
-                  Upon termination, pending payments will be held for 90 days to cover any potential refunds or disputes.
-                </p>
+                
               </section>
 
               {/* Section 9 */}
