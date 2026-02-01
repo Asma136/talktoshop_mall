@@ -83,5 +83,11 @@ export const CATEGORIES = [
   {
     name: 'Automobiles',
     subcategories: ['Car Sales', 'Spare Parts', 'Car Accessories']
+  },
+  {
+    name: 'Others',
+    subcategories: ['others']
   }
-];
+]
+
+
