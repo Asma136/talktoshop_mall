@@ -15,7 +15,7 @@ const VendorOnboarding = () => {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
             
-            <span className="text-sm font-medium">Join One Of The Fatest Growing Marketplace In Nigeria</span>
+            <span className="text-sm font-medium">Join One Of The Fastest Growing Marketplace In Nigeria</span>
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
