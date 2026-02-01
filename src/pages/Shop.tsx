@@ -81,7 +81,7 @@ export default function Shop() {
           <p className="text-gray-600 mb-4">
             Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
